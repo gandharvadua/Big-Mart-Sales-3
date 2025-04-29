@@ -1,22 +1,109 @@
-Big Mart Sales III 
-Problem Statement: The data scientists at BigMart have collected 2013 sales data for 1559 products across 10 stores in different cities. Also, certain attributes of each product and store have been defined. The aim is to build a predictive model and predict the sales of each product at a particular outlet
-Objective: The goal was to predict Item_Outlet_Sales accurately using the available product and store data. The focus was on building a reliable, interpretable model without using any external datasets, ensuring everything remained within the scope of the provided information.
-Step 1: Data Preparation
-Missing values in Item_Weight were filled by calculating the mean weight for each Item_Identifier. Outlet_Size missing values were filled with 'Small' based on frequency.
-Label encoding was done for ordinal categories, and one-hot encoding was applied for nominal features.
-Dropped Item_Identifier and Outlet_Identifier from training features to avoid leakage.
-Step 2: Exploratory Data Analysis
-Conducted univariate and bivariate analysis.
-Identified Item_MRP as a primary driver for sales.
-Built hypotheses around outlet size, location tier, and visibility inconsistency.
-Step 3: Model Building and Experimentation
-Started with a baseline Linear Regression model to establish a minimum benchmark.
-Implemented Decision Tree, Random Forest, Gradient Boosting, XGBoost, and LightGBM models.
-Separate experiments were conducted where boosting models were trained only on selected important features.
-Step 4: Hyperparameter Tuning
-Extensive RandomizedSearchCV was used across LightGBM, XGBoost, and Random Forest.
-Focused tuning on max_depth, n_estimators, learning_rate, subsample ratios, and regularization parameters.
-Step 5: Ensemble Creation
-Built a simple average ensemble combining LightGBM and XGBoost.
-Clipped negative sales predictions to zero to align with business logic.
-Ensemble RMSE improved to 1018.42, outperforming all single models.
+Big Mart Sales III - Sales Prediction Project
+
+Welcome to the Big Mart Sales III repository! This project focuses on predicting outlet sales based on a structured dataset of item and outlet features. It was designed to practice real-world data science workflows: data cleaning, feature engineering, modeling, tuning, interpretation, and deployment readiness.
+
+Project Overview
+
+The objective was to build a robust and interpretable model that predicts the Item_Outlet_Sales variable as accurately as possible. Emphasis was placed on both performance and maintainability, ensuring reproducibility without relying on external data.
+
+Folder Structure
+
+/notebooks/
+
+Jupyter Notebooks for EDA, Modeling, Tuning, and Ensembling.
+
+/data/
+
+Train, test, and submission datasets (placeholders).
+
+/outputs/
+
+Model predictions and submission files.
+
+/scripts/
+
+Python scripts for data preprocessing, model training, and evaluation.
+
+README.md
+
+This document.
+
+requirements.txt
+
+List of Python dependencies.
+
+Steps Followed
+
+Data Cleaning:
+
+Imputed missing values smartly (e.g., average weight per Item).
+
+Standardized inconsistent category names.
+
+Feature Engineering:
+
+Created meaningful features like Outlet Age, Item Category, and Visibility Mean Ratio.
+
+EDA:
+
+Investigated feature relationships, distribution patterns, and hypotheses.
+
+Modeling:
+
+Built multiple models: Linear Regression, Decision Trees, Random Forest, XGBoost, LightGBM, SVR, AdaBoost.
+
+Hyperparameter Tuning:
+
+Applied RandomizedSearchCV for advanced boosting models.
+
+Ensembling:
+
+Averaged LightGBM and XGBoost outputs for final prediction.
+
+Interpretation:
+
+Used SHAP and feature importance plots to explain model behavior.
+
+Submission Generation:
+
+Created clean, ready-to-upload CSV files for evaluation.
+
+Key Results
+
+Best RMSE achieved: 1018.42 (Ensemble Model)
+
+Major sales drivers: Item MRP, Outlet Type, Visibility, Outlet Age
+
+Model interpretability and business logic were prioritized throughout.
+
+How to Run
+
+Clone the repository.
+
+Install dependencies from requirements.txt.
+
+Place the data files inside /data/.
+
+Start with the EDA notebook, then move to the modeling notebook.
+
+Run the final ensemble script for best prediction results.
+
+Technologies Used
+
+Python 3.11
+
+Pandas, NumPy
+
+Scikit-learn
+
+LightGBM, XGBoost
+
+Seaborn, Matplotlib
+
+SHAP
+
+Acknowledgements
+
+Special thanks to Analytics Vidhya for providing the Big Mart Sales III dataset.
+
+If you found this helpful or have suggestions for improvement, feel free to open an issue or contribute!
